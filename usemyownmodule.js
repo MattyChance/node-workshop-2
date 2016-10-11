@@ -58,15 +58,35 @@ function getDate (time) {
 }
 
 function getEmoji(data) {
-    if (data === 'clear-day') {
-        return emoji.get('sunny');
-    } else if (data === 'cloudy' || data === 'partly-cloudy-day' || data === 'partly-cloudy-night') {
-        return emoji.get('cloud');
-    } else if (data === 'rain') {
-        return emoji.get('umbrella');
-    } else {
-        return '';
+    var emojiOutput;
+    switch (data) {
+        case 'clear-day':
+            emojiOutput = emoji.get('sunny');
+            break;
+        case 'clear-night':
+            emojiOutput = emoji.get('new_moon');
+            break;
+
+        case 'cloudy':
+        case 'partly-cloudy-day':
+        case 'partly-cloudy-night':
+            emojiOutput = emoji.get('cloud');
+            break;
+        case 'rain':
+        case 'sleet':
+            emojiOutput = emoji.get('umbrella');
+            break;
+        case 'snow':
+            emojiOutput = emoji.get('snow');
+            break;
+        case 'wind':
+            emojiOutput = emoji.get('umbrella');
+            break;
+        case 'fog':
+            emojiOutput = emoji.get('foggy');
+            break;
     }
+    return emojiOutput;
 }
 
 // console.log(getEmoji('rain'));

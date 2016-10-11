@@ -2,8 +2,10 @@ var requestJson = require('./library/request-json.js');
 var prompt = require('prompt');
 var Table = require('cli-table');
 var table = new Table( {
-    colWidths: [50, 30] 
+    colWidths: [50, 20] 
 });
+
+var emoji = require('node-emoji');
 
 
 var weatherURL = 'https://api.darksky.net/forecast/0e5d36966d4c2aee0a2baa3f22191651/';
@@ -32,12 +34,12 @@ function weatherForecast() {
                             // console.log('In next five days: ' + weatherData.daily.summary);
                             var date = weatherData.daily.data;
                             table.push(
-                                { 'currently': weatherData.currently.icon},
-                                { [getDate(date[1].time)]: date[1].icon},
-                                { [getDate(date[2].time)]: date[2].icon},
-                                { [getDate(date[3].time)]: date[3].icon},
-                                { [getDate(date[4].time)]: date[4].icon},
-                                { [getDate(date[5].time)]: date[5].icon}
+                                {'currently': [getEmoji(weatherData.currently.icon)]},
+                                { [getDate(date[1].time)]: getEmoji(date[1].icon)},
+                                { [getDate(date[2].time)]: getEmoji(date[2].icon)},
+                                { [getDate(date[3].time)]: getEmoji(date[3].icon)},
+                                { [getDate(date[4].time)]: getEmoji(date[4].icon)},
+                                { [getDate(date[5].time)]: getEmoji(date[5].icon)}
                                 );
                                 console.log(table.toString());
                             
@@ -54,3 +56,17 @@ weatherForecast();
 function getDate (time) {
     return new Date(time * 1000).toString();
 }
+
+function getEmoji(data) {
+    if (data === 'clear-day') {
+        return emoji.get('sunny');
+    } else if (data === 'cloudy' || data === 'partly-cloudy-day' || data === 'partly-cloudy-night') {
+        return emoji.get('cloud');
+    } else if (data === 'rain') {
+        return emoji.get('umbrella');
+    } else {
+        return '';
+    }
+}
+
+// console.log(getEmoji('rain'));

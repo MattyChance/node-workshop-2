@@ -4,6 +4,7 @@
   "description": "this is an exercise for decodemtl workshop on node.js",
   "main": "request-as-json-metrying.js",
   "dependencies": {
+    "node-emoji": "^1.4.1",
     "request": "^2.75.0"
   },
   "devDependencies": {},

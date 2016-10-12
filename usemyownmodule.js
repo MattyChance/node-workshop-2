@@ -33,6 +33,7 @@ function weatherForecast() {
                             // console.log('The current weather in your city is: ' + weatherData.currently.icon);
                             // console.log('In next five days: ' + weatherData.daily.summary);
                             var date = weatherData.daily.data;
+                            //try to redo it in a for loop
                             table.push(
                                 {'currently': [getEmoji(weatherData.currently.icon)]},
                                 { [getDate(date[1].time)]: getEmoji(date[1].icon)},

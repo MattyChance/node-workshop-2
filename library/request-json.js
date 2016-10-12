@@ -20,12 +20,21 @@ function showOutput (val) {
     console.log(val);
 }
 
-requestJson('http://swapi.co/api/', function (err, input) {
+
+// requestJson('www.freecodecamp', function (err, input) {
+//     if (err) {
+//         console.log('Error alert!');
+//     } else {
+//         showOutput(input);
+//     }
+// });
+
+function callback (err, input) {
     if (err) {
-        console.log('Error alert!');
+        console.log('There was an error somewhere.');
     } else {
         showOutput(input);
     }
-});
+}
 
-exports.requestJson = requestJson;
+module.exports = requestJson;
